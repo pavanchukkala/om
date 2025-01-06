@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - OM Castings</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background: #f4f4f9;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff4d00, #ffd700);
+            color: white;
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+
+        header nav ul li a:hover, header nav ul li a.active {
+            background: #333;
+            color: #ffd700;
+            border-radius: 5px;
+        }
+
+        /* Main Content */
+        .about-section {
+            padding: 60px 20px;
+            background: white;
+            text-align: center;
+        }
+
+        .about-section h1 {
+            font-size: 2.5rem;
+            color: #222;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.8;
+        }
+
+        .about-section ul {
+            list-style: disc;
+            color: #333;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #222, #333);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('header nav ul li a');
+            links.forEach(link => {
+                if (link.getAttribute('href') === 'about.html') {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">OM Castings</div>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h1>About Us</h1>
+        <p>OM Alloy Castings, established in 2017 at Industrial Park Naidupeta, Nellore District, Andhra Pradesh, specializes in manufacturing premium-quality excavator bucket teeth and metal components. Promoted by technocrats with technical expertise, our company focuses on delivering innovative solutions in the casting industry.</p>
+        <p>We use advanced Lost Foam Casting (LFC) technology to overcome challenges in surface finish, quality, and mass production while meeting the demands of local and global markets.</p>
+
+        <h2>Our Mission</h2>
+        <ul>
+            <li>Manufacturing defect-free castings using the latest technologies.</li>
+            <li>Ensuring consistent chemical composition and suitable heat treatment processes.</li>
+            <li>Focusing on customer satisfaction by solving problems effectively.</li>
+            <li>Improving working conditions and infrastructure to meet ISO standards.</li>
+        </ul>
+
+        <h2>Vision</h2>
+        <p>To be a leading manufacturer of high-quality, wear-resistant casting parts, trusted by customers for durability and performance.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 OM Castings. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
