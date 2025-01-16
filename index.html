@@ -47,7 +47,6 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(128, 128, 128, 0.6);
-            animation: fadeIn 2s ease-in 6s forwards;
         }
 
         .mold-text {
@@ -58,8 +57,7 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 10px rgba(255, 77, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.8);
             opacity: 0;
-            animation: reveal 1.5s ease-in-out forwards;
-            animation-delay: 6s;
+            transition: opacity 1s ease-in-out;
         }
 
         @keyframes fadeIn {
@@ -67,15 +65,6 @@
                 opacity: 0;
             }
             to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes reveal {
-            0% {
-                opacity: 0;
-            }
-            100% {
                 opacity: 1;
             }
         }
@@ -125,7 +114,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const moldText = document.querySelector('.mold-text');
 
-            // Hide the text initially
+            // Ensure the text is hidden initially
             moldText.style.opacity = '0';
 
             // Reveal the text after the path animation completes
