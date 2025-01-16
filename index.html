@@ -37,54 +37,29 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 200px;
+            transform: translate(-50%, -50%) scale(1.5);
+            width: 600px;
+            height: 300px;
             background: linear-gradient(145deg, #3a3a3a, #6e6e6e);
-            border: 4px solid #888;
+            border: 8px solid #aaa;
             border-radius: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: inset 0 0 10px #222, 0 0 15px rgba(255, 215, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mold:before {
-            content: '';
-            position: absolute;
-            top: 5%;
-            left: 5%;
-            right: 5%;
-            bottom: 5%;
-            background: linear-gradient(145deg, #4a4a4a, #7e7e7e);
-            border-radius: 15px;
-            box-shadow: inset 0 0 20px #444, inset 0 0 40px rgba(128, 128, 128, 0.5);
-            z-index: -1;
-        }
-
-        .mold:after {
-            content: '';
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            right: 10%;
-            bottom: 10%;
-            background: radial-gradient(circle, rgba(80, 80, 80, 0.8), rgba(20, 20, 20, 0.9));
-            border-radius: 10px;
-            z-index: -2;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.8), inset 0 0 30px rgba(128, 128, 128, 0.8);
+            animation: moldGlow 2s infinite alternate;
         }
 
         .mold-text {
-            font-size: 3rem;
+            font-size: 6rem;
             font-weight: bold;
             background: linear-gradient(90deg, #ff4d00, #ffd700, #ff4d00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px rgba(255, 77, 0, 1), 0 0 20px rgba(255, 215, 0, 0.8);
+            text-shadow: 0 0 20px rgba(255, 77, 0, 1), 0 0 40px rgba(255, 215, 0, 1);
             opacity: 0;
             transition: opacity 1s ease-in-out, transform 0.5s ease-in-out;
+            animation: textShimmer 3s infinite;
         }
 
         @keyframes fadeIn {
@@ -96,24 +71,32 @@
             }
         }
 
+        @keyframes textShimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
         @keyframes moldGlow {
             from {
-                box-shadow: inset 0 0 10px #222, 0 0 15px rgba(255, 215, 0, 0.5);
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.8), inset 0 0 30px rgba(128, 128, 128, 0.8);
             }
             to {
-                box-shadow: inset 0 0 20px #333, 0 0 25px rgba(255, 255, 0, 0.8);
+                box-shadow: 0 0 70px rgba(255, 255, 0, 1), inset 0 0 50px rgba(192, 192, 192, 1);
             }
         }
 
         @keyframes textGlow {
             from {
-                text-shadow: 0 0 10px rgba(255, 77, 0, 1), 0 0 20px rgba(255, 215, 0, 0.8);
+                text-shadow: 0 0 20px rgba(255, 77, 0, 1), 0 0 40px rgba(255, 215, 0, 1);
             }
             to {
-                text-shadow: 0 0 20px rgba(255, 77, 0, 1), 0 0 30px rgba(255, 215, 0, 1);
+                text-shadow: 0 0 40px rgba(255, 77, 0, 1), 0 0 60px rgba(255, 215, 0, 1);
             }
         }
-
     </style>
 </head>
 <body>
@@ -168,3 +151,4 @@
     </script>
 </body>
 </html>
+
