@@ -40,13 +40,14 @@
             transform: translate(-50%, -50%) scale(1.5);
             width: 600px;
             height: 300px;
-            background: linear-gradient(135deg, rgba(64, 64, 64, 0.9), rgba(192, 192, 192, 0.9));
+            background: linear-gradient(145deg, #3a3a3a, #6e6e6e);
             border: 8px solid #aaa;
             border-radius: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             box-shadow: 0 0 50px rgba(255, 215, 0, 0.8), inset 0 0 30px rgba(128, 128, 128, 0.8);
+            animation: moldGlow 2s infinite alternate;
         }
 
         .mold-text {
@@ -57,7 +58,8 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 20px rgba(255, 77, 0, 1), 0 0 40px rgba(255, 215, 0, 1);
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out, transform 0.5s ease-in-out;
+            animation: textShimmer 3s infinite;
         }
 
         @keyframes fadeIn {
@@ -66,6 +68,24 @@
             }
             to {
                 opacity: 1;
+            }
+        }
+
+        @keyframes textShimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes moldGlow {
+            from {
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.8), inset 0 0 30px rgba(128, 128, 128, 0.8);
+            }
+            to {
+                box-shadow: 0 0 70px rgba(255, 255, 0, 1), inset 0 0 50px rgba(192, 192, 192, 1);
             }
         }
 
@@ -120,6 +140,7 @@
             // Reveal the text after the path animation completes
             setTimeout(() => {
                 moldText.style.opacity = '1';
+                moldText.style.transform = 'scale(1.1)';
             }, 6000);
 
             // Navigate to the home page after reveal
