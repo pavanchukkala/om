@@ -33,11 +33,6 @@
             filter: url(#glow);
         }
 
-        .molten-circle {
-            fill: url(#metalGradient);
-            filter: url(#glow);
-        }
-
         .mold {
             position: absolute;
             top: 50%;
@@ -52,7 +47,7 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(128, 128, 128, 0.6);
-            animation: fadeIn 2s ease-in 6s forwards, scaleUp 1s ease-in-out 6.5s forwards;
+            animation: fadeIn 2s ease-in 6s forwards;
         }
 
         .mold-text {
@@ -62,7 +57,9 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 10px rgba(255, 77, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.8);
-            animation: textGlow 1.5s ease-in-out infinite alternate, reveal 2s ease-in-out 6s forwards;
+            opacity: 0;
+            animation: reveal 1.5s ease-in-out forwards;
+            animation-delay: 6s;
         }
 
         @keyframes fadeIn {
@@ -77,20 +74,9 @@
         @keyframes reveal {
             0% {
                 opacity: 0;
-                transform: scale(0.8);
             }
             100% {
                 opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes scaleUp {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1.2);
             }
         }
 
@@ -137,11 +123,14 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const mold = document.getElementById('mold');
+            const moldText = document.querySelector('.mold-text');
 
-            // Reveal the mold
+            // Hide the text initially
+            moldText.style.opacity = '0';
+
+            // Reveal the text after the path animation completes
             setTimeout(() => {
-                mold.style.opacity = '1';
+                moldText.style.opacity = '1';
             }, 6000);
 
             // Navigate to the home page after reveal
