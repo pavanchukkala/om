@@ -34,27 +34,6 @@
             stroke-linecap: round;
         }
 
-        .particle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, #ff7700, transparent);
-            border-radius: 50%;
-            animation: floatUp 3s linear infinite;
-            opacity: 0;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-200px) scale(0.5);
-                opacity: 0;
-            }
-        }
-
         .mold {
             position: absolute;
             top: 50%;
@@ -130,7 +109,7 @@
                     <animate attributeName="x2" from="100%" to="200%" dur="1.2s" repeatCount="indefinite" />
                 </linearGradient>
             </defs>
-            <path id="metalPath" d="M50 0 L50 20 Q40 30 20 30 Q10 40 20 50 Q30 60 50 60 Q70 60 80 50 Q90 40 80 30 Q70 20 50 20"
+            <path id="metalPath" d="M40 0 L0 0 L0 100 L100 100 L100 0 L60 0 L50 50"
                 class="molten-path">
                 <animate attributeName="stroke-dasharray"
                          values="0,600;100,500;200,400;300,300;400,200;500,100;600,0"
@@ -145,23 +124,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const scene = document.getElementById('scene');
-
-            // Generate molten particles
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.bottom = `0`;
-                particle.style.animationDuration = `${2 + Math.random()}s`;
-                scene.appendChild(particle);
-
-                // Remove particle after animation
-                particle.addEventListener('animationend', () => {
-                    particle.remove();
-                });
-            }
-
             // Navigate to the home page after reveal
             setTimeout(() => {
                 window.location.href = "Home.html"; // Replace with the actual URL of the home page
