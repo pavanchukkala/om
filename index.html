@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background: radial-gradient(circle at center, #1a1a1a, #000);
+            background: black;
             color: white;
             font-family: Arial, sans-serif;
         }
@@ -28,10 +28,14 @@
 
         .molten-path {
             stroke: url(#metalGradient);
-            stroke-width: 4;
+            stroke-width: 2;
             fill: none;
             filter: url(#glow);
-            stroke-linecap: round;
+        }
+
+        .molten-circle {
+            fill: url(#metalGradient);
+            filter: url(#glow);
         }
 
         .mold {
@@ -41,25 +45,22 @@
             transform: translate(-50%, -50%);
             width: 300px;
             height: 150px;
-            background: linear-gradient(to bottom, #666, #444);
-            border: 3px solid #888;
+            background: rgba(128, 128, 128, 0.5);
+            border: 2px solid #666;
             border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
+            overflow: hidden;
             opacity: 0;
             animation: fadeIn 2s ease-in 6s forwards;
         }
 
         .mold-text {
-            font-size: 3rem;
-            font-weight: bold;
-            background: linear-gradient(to right, #ffd700, #ff7700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px #ff7700, 0 0 20px #ff7700;
-            animation: reveal 3s ease-in-out 6s forwards, glowPulse 1s infinite alternate;
+            font-size: 2.5rem;
+            color: transparent;
+            -webkit-text-stroke: 1px #ccc;
+            animation: reveal 2s ease-in-out 6s forwards;
         }
 
         @keyframes fadeIn {
@@ -73,19 +74,10 @@
 
         @keyframes reveal {
             0% {
-                opacity: 0;
+                color: transparent;
             }
             100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes glowPulse {
-            0% {
-                text-shadow: 0 0 10px #ff7700, 0 0 20px #ffd700;
-            }
-            100% {
-                text-shadow: 0 0 20px #ffd700, 0 0 40px #ff7700;
+                color: #fff;
             }
         }
     </style>
@@ -95,7 +87,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
                 <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
                     <feMerge>
                         <feMergeNode in="blur" />
                         <feMergeNode in="SourceGraphic" />
@@ -121,9 +113,15 @@
             <div class="mold-text">OM CASTINGS</div>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const mold = document.getElementById('mold');
+
+            // Reveal the mold
+            setTimeout(() => {
+                mold.style.opacity = '1';
+            }, 6000);
+
             // Navigate to the home page after reveal
             setTimeout(() => {
                 window.location.href = "Home.html"; // Replace with the actual URL of the home page
