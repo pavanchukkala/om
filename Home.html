@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OM Castings - Home</title>
     <style>
-  /* General Reset */
+/* General Reset */
 body, html {
     margin: 0;
     padding: 0;
@@ -222,11 +222,11 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness - Horizontal Layout */
 @media (max-width: 768px) {
     /* Header */
     header {
-        flex-direction: column;
+        flex-direction: row; /* Keeping the layout horizontal */
         padding: 10px;
         text-align: center;
     }
@@ -236,9 +236,11 @@ footer a:hover {
         margin-bottom: 10px;
     }
 
+    /* Header Navigation */
     header nav ul {
-        flex-direction: column; /* Stack the items vertically */
-        gap: 15px;
+        display: flex; /* Keeping the nav links horizontal */
+        gap: 20px;
+        flex-wrap: nowrap; /* Prevent wrapping */
         margin-top: 10px;
     }
 
