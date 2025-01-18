@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OM Castings - Home</title>
     <style>
-      /* General Reset */
+  /* General Reset */
 body, html {
     margin: 0;
     padding: 0;
@@ -29,6 +29,7 @@ header {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Logo */
 header .logo {
     font-size: 2rem;
     font-weight: bold;
@@ -36,12 +37,14 @@ header .logo {
     letter-spacing: 2px;
 }
 
+/* Header Navigation */
 header nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     gap: 30px;
+    flex-wrap: nowrap; /* Keeps the items in one row */
 }
 
 header nav ul li a {
@@ -234,7 +237,7 @@ footer a:hover {
     }
 
     header nav ul {
-        flex-direction: column;
+        flex-direction: column; /* Stack the items vertically */
         gap: 15px;
         margin-top: 10px;
     }
@@ -300,35 +303,6 @@ footer a:hover {
 
     .card p {
         font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Hero Section */
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .hero .cta a {
-        font-size: 0.9rem;
-    }
-
-    /* Section Styling */
-    .section h2 {
-        font-size: 1.8rem;
-    }
-
-    .section p {
-        font-size: 0.9rem;
-    }
-
-    /* Cards Styling */
-    .card {
-        width: 100%;
     }
 }
 
