@@ -222,11 +222,11 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Mobile Responsiveness - Horizontal Layout */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
     /* Header */
     header {
-        flex-direction: row; /* Keeping the layout horizontal */
+        flex-direction: column;
         padding: 10px;
         text-align: center;
     }
@@ -236,11 +236,10 @@ footer a:hover {
         margin-bottom: 10px;
     }
 
-    /* Header Navigation */
+    /* Header Navigation for Mobile */
     header nav ul {
-        display: flex; /* Keeping the nav links horizontal */
-        gap: 20px;
-        flex-wrap: nowrap; /* Prevent wrapping */
+        flex-direction: column; /* Stacks items vertically */
+        gap: 15px;
         margin-top: 10px;
     }
 
