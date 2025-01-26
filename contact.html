@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Contact Us - OM Castings</title>
     <style>
         /* General Reset */
@@ -19,7 +19,7 @@
         header {
             background: linear-gradient(135deg, #ff4d00, #ffd700);
             color: white;
-            padding: 20px 40px;
+            padding: 15px 20px;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -30,10 +30,14 @@
         }
 
         header .logo {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+        }
+
+        header nav {
+            display: flex;
         }
 
         header nav ul {
@@ -41,7 +45,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 30px;
+            gap: 20px;
         }
 
         header nav ul li a {
@@ -59,26 +63,68 @@
             border-radius: 5px;
         }
 
+        /* Toggle Menu for Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            header nav {
+                display: none;
+                flex-direction: column;
+                background: #ff4d00;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            header nav ul {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px 0;
+            }
+
+            header nav ul li a {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            header nav.show {
+                display: flex;
+            }
+        }
+
         /* Contact Section */
         .contact-section {
-            padding: 60px 20px;
+            padding: 40px 20px;
             background: white;
             text-align: center;
         }
 
         .contact-section h2 {
             margin-bottom: 20px;
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #222;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
         }
 
         .contact-section p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #555;
             max-width: 700px;
-            margin: 0 auto 40px auto;
+            margin: 0 auto 30px auto;
             line-height: 1.6;
         }
 
@@ -86,14 +132,14 @@
             max-width: 600px;
             margin: 0 auto;
             background: #f4f4f9;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 15px;
+            padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -103,7 +149,7 @@
         .contact-form button {
             background: #ff4d00;
             color: white;
-            padding: 15px 30px;
+            padding: 10px 20px;
             font-size: 1rem;
             border: none;
             border-radius: 5px;
@@ -120,7 +166,7 @@
             background: linear-gradient(135deg, #222, #333);
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
         }
 
         footer a {
@@ -137,8 +183,9 @@
     <!-- Header -->
     <header>
         <div class="logo">OM Castings</div>
+        <button id="menu-toggle" class="menu-toggle">☰</button>
         <nav>
-            <ul>
+            <ul id="nav-menu">
                 <li><a href="Home.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="products.html">Products</a></li>
@@ -167,11 +214,9 @@
 
     <!-- Firebase Integration -->
     <script type="module">
-        // Import Firebase SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
-        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAofc3mQez-sDrvpZNsoOanaLjeEr3SSag",
             authDomain: "om-new-5d333.firebaseapp.com",
@@ -182,32 +227,35 @@
             measurementId: "G-WLQWC3702E"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Handle Form Submission
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
             try {
                 await addDoc(collection(db, "contacts"), {
-                    name: name,
-                    email: email,
-                    message: message,
+                    name,
+                    email,
+                    message,
                     timestamp: new Date()
                 });
-
                 alert('Your message has been sent successfully!');
                 document.getElementById('contactForm').reset();
             } catch (error) {
-                console.error("Error adding document: ", error);
+                console.error("Error: ", error);
                 alert('Failed to send your message. Please try again later.');
             }
+        });
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
         });
     </script>
 </body>
