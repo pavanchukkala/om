@@ -1,5 +1,3 @@
-// firebase-init.js
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
@@ -21,17 +19,19 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
-// Handle Form Submission (add your form handling code here)
+// Handle Form Submission
 document.getElementById('contactForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
     const message = document.getElementById('message').value;
 
     try {
         await addDoc(collection(db, "contacts"), {
             name: name,
             email: email,
+            phone: phone,
             message: message,
             timestamp: new Date()
         });
@@ -43,4 +43,3 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
         alert('Failed to send your message. Please try again later.');
     }
 });
-
