@@ -36,23 +36,18 @@
             letter-spacing: 1px;
         }
 
-        header nav {
-            display: flex;
-        }
-
         header nav ul {
             list-style: none;
-            margin: 0;
-            padding: 0;
             display: flex;
             gap: 20px;
+            margin: 0;
+            padding: 0;
         }
 
         header nav ul li a {
             color: white;
             text-decoration: none;
             font-size: 1rem;
-            font-weight: 500;
             padding: 5px 10px;
             transition: all 0.3s ease;
         }
@@ -63,78 +58,31 @@
             border-radius: 5px;
         }
 
-        /* Toggle Menu for Mobile */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            header nav {
-                display: none;
-                flex-direction: column;
-                background: #ff4d00;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            }
-
-            header nav ul {
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px 0;
-            }
-
-            header nav ul li a {
-                font-size: 1rem;
-                padding: 10px 20px;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            header nav.show {
-                display: flex;
-            }
-        }
-
         /* Contact Section */
         .contact-section {
             padding: 40px 20px;
-            background: white;
             text-align: center;
         }
 
         .contact-section h2 {
-            margin-bottom: 20px;
             font-size: 2rem;
-            color: #222;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            color: #222;
         }
 
-        .contact-section p {
-            font-size: 1rem;
-            color: #555;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-            line-height: 1.6;
-        }
-
-        .contact-form {
+        .contact-form, .message-display {
             max-width: 600px;
             margin: 0 auto;
             background: #f4f4f9;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Default hidden */
+        }
+
+        .contact-form.active, .message-display.active {
+            display: block;
         }
 
         .contact-form input, .contact-form textarea {
@@ -161,21 +109,34 @@
             background: #ffd700;
         }
 
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #222, #333);
+        /* Message Display */
+        .message-display h3 {
+            margin-bottom: 10px;
+            color: #222;
+            font-size: 1.5rem;
+        }
+
+        .message-display p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .message-display button {
+            margin-top: 20px;
+            background: #333;
             color: white;
-            text-align: center;
-            padding: 15px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        footer a {
-            color: #ffd700;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
+        .message-display button:hover {
+            background: #ffd700;
+            color: #333;
         }
     </style>
 </head>
@@ -183,9 +144,8 @@
     <!-- Header -->
     <header>
         <div class="logo">OM Castings</div>
-        <button id="menu-toggle" class="menu-toggle">☰</button>
         <nav>
-            <ul id="nav-menu">
+            <ul>
                 <li><a href="Home.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="products.html">Products</a></li>
@@ -198,26 +158,58 @@
     <!-- Contact Section -->
     <section class="contact-section">
         <h2>Contact Us</h2>
-        <p>We would love to hear from you. Fill out the form below to get in touch with us.</p>
-        <form class="contact-form" id="contactForm">
+
+        <!-- Contact Form -->
+        <form class="contact-form active" id="contactForm">
             <input type="text" id="name" name="name" placeholder="Your Name" required>
             <input type="email" id="email" name="email" placeholder="Your Email" required>
             <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
             <button type="submit">Submit</button>
         </form>
+
+        <!-- Message Display -->
+        <div class="message-display" id="messageDisplay">
+            <h3>Thank You for Your Message!</h3>
+            <p id="displayedMessage"></p>
+            <button id="sendAnother">Send Another Message</button>
+        </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 OM Castings. All rights reserved. | <a href="#">Privacy Policy</a></p>
-    </footer>
-
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
+        const contactForm = document.getElementById('contactForm');
+        const messageDisplay = document.getElementById('messageDisplay');
+        const displayedMessage = document.getElementById('displayedMessage');
+        const sendAnother = document.getElementById('sendAnother');
 
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
+        // Handle form submission
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get user input
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Display the submitted message
+            displayedMessage.innerHTML = `
+                <strong>Name:</strong> ${name}<br>
+                <strong>Email:</strong> ${email}<br>
+                <strong>Message:</strong> ${message}
+            `;
+
+            // Show the message display and hide the form
+            contactForm.classList.remove('active');
+            messageDisplay.classList.add('active');
+        });
+
+        // Handle "Send Another" button click
+        sendAnother.addEventListener('click', () => {
+            // Reset the form
+            contactForm.reset();
+
+            // Show the form and hide the message display
+            messageDisplay.classList.remove('active');
+            contactForm.classList.add('active');
         });
     </script>
 </body>
