@@ -212,45 +212,7 @@
         <p>&copy; 2025 OM Castings. All rights reserved. | <a href="#">Privacy Policy</a></p>
     </footer>
 
-    <!-- Firebase Integration -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAofc3mQez-sDrvpZNsoOanaLjeEr3SSag",
-            authDomain: "om-new-5d333.firebaseapp.com",
-            projectId: "om-new-5d333",
-            storageBucket: "om-new-5d333.firebasestorage.app",
-            messagingSenderId: "115867801200",
-            appId: "1:115867801200:web:0a0128f496bdd8264586b5",
-            measurementId: "G-WLQWC3702E"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            try {
-                await addDoc(collection(db, "contacts"), {
-                    name,
-                    email,
-                    message,
-                    timestamp: new Date()
-                });
-                alert('Your message has been sent successfully!');
-                document.getElementById('contactForm').reset();
-            } catch (error) {
-                console.error("Error: ", error);
-                alert('Failed to send your message. Please try again later.');
-            }
-        });
-
+    <script>
         const menuToggle = document.getElementById('menu-toggle');
         const navMenu = document.getElementById('nav-menu');
 
