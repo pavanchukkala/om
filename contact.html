@@ -43,6 +43,8 @@
             gap: 20px;
             margin: 0;
             padding: 0;
+            justify-content: center; /* Ensure the nav stays centered */
+            flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
         }
 
         header nav ul li a {
@@ -59,15 +61,10 @@
             border-radius: 5px;
         }
 
-        /* Responsive Navigation */
+        /* Ensure the layout stays horizontal on smaller screens */
         @media (max-width: 768px) {
             header nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            header nav ul li {
-                margin: 5px 0;
+                justify-content: space-around;
             }
         }
 
